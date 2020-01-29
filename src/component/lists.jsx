@@ -4,68 +4,18 @@ import Container from "react-bootstrap/Container";
 import { Jumbotron, Button, Navbar, Fade } from "react-bootstrap";
 import _ from "lodash";
 import ListCard from "./listCard";
+import ListsService from "../service/listsService";
 
 class Lists extends Component {
   state = { lists: [] };
 
   componentDidMount() {
-    const lists = [];
-    lists.push(
-      new List("Scary Movies", "My favorite slasher movies", [
-        new ListItem("Scary Movie")
-      ]),
-      new List("Scary Movies", "My favorite slasher movies", [
-        new ListItem("Scary Movie")
-      ]),
-      new List("Scary Movies", "My favorite slasher movies", [
-        new ListItem("Scary Movie")
-      ]),
-      new List("Scary Movies", "My favorite slasher movies", [
-        new ListItem("Scary Movie")
-      ]),
-      new List("Scary Movies", "My favorite slasher movies", [
-        new ListItem("Scary Movie")
-      ]),
-      new List("Scary Movies", "My favorite slasher movies", [
-        new ListItem("Scary Movie")
-      ]),
-      new List("Scary Movies", "My favorite slasher movies", [
-        new ListItem("Scary Movie")
-      ]),
-      new List("Scary Movies", "My favorite slasher movies", [
-        new ListItem("Scary Movie")
-      ]),
-      new List("Scary Movies", "My favorite slasher movies", [
-        new ListItem("Scary Movie")
-      ]),
-      new List("Scary Movies", "My favorite slasher movies", [
-        new ListItem("Scary Movie")
-      ]),
-      new List("Scary Movies", "My favorite slasher movies", [
-        new ListItem("Scary Movie")
-      ]),
-      new List("Scary Movies", "My favorite slasher movies", [
-        new ListItem("Scary Movie")
-      ]),
-      new List("Scary Movies", "My favorite slasher movies", [
-        new ListItem("Scary Movie")
-      ]),
-      new List("Scary Movies", "My favorite slasher movies", [
-        new ListItem("Scary Movie")
-      ]),
-      new List("Scary Movies", "My favorite slasher movies", [
-        new ListItem("Scary Movie")
-      ]),
-      new List("Scary Movies", "My favorite slasher movies", [
-        new ListItem("Scary Movie")
-      ])
-    );
-
-    this.setState({ lists });
+    this.setState({ lists: new ListsService().all() });
   }
 
   render() {
     const { lists } = this.state;
+    if (lists.length === 0) return <div>no list</div>;
 
     const rows = _.chunk(lists, 3);
 
@@ -91,27 +41,6 @@ class Lists extends Component {
         </Fade>
       </React.Fragment>
     );
-  }
-}
-
-class List {
-  title = "";
-  description = "";
-  items = [];
-
-  constructor(title, description, items) {
-    this.title = title;
-    this.description = description;
-    this.items = items;
-  }
-}
-
-class ListItem {
-  text = "";
-  isComplete = true;
-  constructor(text, isComplete) {
-    this.text = text;
-    this.isComplete = isComplete;
   }
 }
 

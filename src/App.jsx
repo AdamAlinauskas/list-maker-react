@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import Lists from "./component/lists";
 import Navbar from "./component/navbar";
 import About from "./component/about";
+import EditList from "./component/editList";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Navbar></Navbar>
       <Switch>
         <Route path="/about" component={About} />
+        <Route path="/lists/:id" component={EditList} />
         <Route path="/lists" component={Lists} />
         <Redirect to="/lists" />
       </Switch>

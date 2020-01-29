@@ -21,7 +21,7 @@ const ListCard = ({ list }) => {
         <Card.Body>
           {/* <Card.Title>Favorite Movies</Card.Title> */}
           <Card.Text>{list.description}</Card.Text>
-          <Link to="/">Edit</Link>
+          <Link to={`/lists/${list.id}`}>Edit</Link>
         </Card.Body>
       </Card>
       <br />

@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-md navbar-dark bg-dark ">
+    <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-1">
       <a className="navbar-brand" href="/">
         List Maker Pro
       </a>
