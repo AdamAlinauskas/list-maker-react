@@ -3,11 +3,16 @@ import ListsService from "../service/listsService";
 
 class EditList extends Component {
   state = { list: { items: [], newItem: "" } };
+  listService = null;
+  constructor() {
+    super();
+    this.listService = new ListsService();
+  }
 
   componentDidMount() {
     const id = this.props.match.params.id;
     console.log(id);
-    const list = { ...new ListsService().getList(id) };
+    const list = { ...this.listService.getList(id) };
     this.setState({ list });
   }
 
@@ -25,6 +30,14 @@ class EditList extends Component {
     var items = [{ text: this.state.newItem }, ...this.state.list.items];
     list.items = items;
     this.setState({ list, newItem: "" });
+  };
+
+  handleSave = () => {
+    const { history } = this.props;
+
+    this.listService.save({ ...this.state.list });
+
+    history.replace("/");
   };
 
   render() {
@@ -65,8 +78,8 @@ class EditList extends Component {
                 />
                 <div className="input-group-append">
                   <button
+                    type="submit"
                     className="btn btn-outline-secondary"
-                    type="button"
                     id="button-addon2"
                   >
                     Add
@@ -92,7 +105,12 @@ class EditList extends Component {
         </div>
         <div className="row">
           <div className="col-md-12">
-            <button className="btn btn-dark mt-3 col-md-12">Save</button>
+            <button
+              onClick={this.handleSave}
+              className="btn btn-dark mt-3 col-md-12"
+            >
+              Save
+            </button>
           </div>
         </div>
       </React.Fragment>

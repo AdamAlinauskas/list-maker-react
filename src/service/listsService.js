@@ -63,9 +63,13 @@ class ListsService {
   };
 
   getList(id) {
-    console.log(lists);
-    console.log(lists.find(x => x.id === id));
     return { ...lists.find(x => x.id === id) };
+  }
+
+  save(list) {
+    const index = lists.indexOf(lists.find(x => x.id === list.id));
+    console.log(list.id);
+    lists[index] = list;
   }
 }
 

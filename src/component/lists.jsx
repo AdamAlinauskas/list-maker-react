@@ -10,6 +10,7 @@ class Lists extends Component {
   state = { lists: [] };
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.setState({ lists: new ListsService().all() });
   }
 
