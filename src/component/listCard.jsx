@@ -3,6 +3,7 @@ import { Col, Badge } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 
+
 const ListCard = ({ list }) => {
   return (
     <Col md={4}>

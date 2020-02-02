@@ -5,7 +5,7 @@ const lists = [];
 lists.push(
   new List("Scary Movies", "My favorite slasher movies", [
     new ListItem("Scary Movie"),
-    new ListItem("Terminator"),
+    new ListItem("Terminator", true),
     new ListItem("Gremlins"),
     new ListItem("Friday 13th"),
     new ListItem("Jason")

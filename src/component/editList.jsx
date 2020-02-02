@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import ListsService from "../service/listsService";
+import ListItemComponent from "./listItemComponent";
 
 class EditList extends Component {
-  state = { list: { items: [], newItem: "" } };
+  state = { list: { title: "", items: [], newItem: "" } };
   listService = null;
   constructor() {
     super();
@@ -28,6 +29,7 @@ class EditList extends Component {
     const list = { ...this.state.list };
 
     var items = [{ text: this.state.newItem }, ...this.state.list.items];
+    console.log(this.state.newItem);
     list.items = items;
     this.setState({ list, newItem: "" });
   };
@@ -38,6 +40,19 @@ class EditList extends Component {
     this.listService.save({ ...this.state.list });
 
     history.replace("/");
+  };
+
+  handleToggleItemIsComplete = itemToUpdate => {
+    const { list } = { ...this.state };
+    const index = list.items.indexOf(itemToUpdate);
+    const item = { ...list.items[index] };
+    item.isComplete = !item.isComplete;
+    list.items[index] = item;
+
+    console.log(item);
+    console.log(list);
+
+    this.setState({ list });
   };
 
   render() {
@@ -70,7 +85,7 @@ class EditList extends Component {
                   placeholder="New Item"
                   aria-label="Recipient's username"
                   aria-describedby="button-addon2"
-                  autofocus
+                  autoFocus
                   value={this.state.newItem}
                   onChange={({ target }) =>
                     this.setState({ newItem: target.value })
@@ -92,14 +107,15 @@ class EditList extends Component {
         <div className="row">
           <div className="col-md-12 col-md-6">
             <ul className="list-group">
-              {items.map((item, pos) => (
-                <li
-                  key={pos}
-                  className="list-group-item d-flex justify-content-between align-items-center"
-                >
-                  {item.text}
-                </li>
-              ))}
+              {items.map((item, pos) => {
+                return (
+                  <ListItemComponent
+                    key={item.text}
+                    item={item}
+                    onClick={this.handleToggleItemIsComplete}
+                  />
+                );
+              })}
             </ul>
           </div>
         </div>

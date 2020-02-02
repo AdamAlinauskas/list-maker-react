@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
-import { Jumbotron, Button, Navbar, Fade } from "react-bootstrap";
+import { Jumbotron, Button, Fade } from "react-bootstrap";
 import _ from "lodash";
 import ListCard from "./listCard";
 import ListsService from "../service/listsService";
