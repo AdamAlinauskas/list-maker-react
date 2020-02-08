@@ -9,6 +9,7 @@ import Save from "./save";
 class EditList extends Component {
   state = { list: { title: "", items: [] } };
   listService = null;
+
   constructor() {
     super();
     this.listService = new ListsService();
@@ -16,9 +17,12 @@ class EditList extends Component {
 
   componentDidMount() {
     const id = this.props.match.params.id;
-    console.log(id);
-    const list = { ...this.listService.getList(id) };
-    this.setState({ list });
+
+    if (id !== "new") {
+      console.log("load");
+      const list = { ...this.listService.getList(id) };
+      this.setState({ list });
+    }
   }
 
   handleTitleChange = event => {
@@ -62,7 +66,6 @@ class EditList extends Component {
 
   render() {
     const { title, items } = this.state.list;
-
     return (
       <React.Fragment>
         <Title onChange={this.handleTitleChange} title={title} />

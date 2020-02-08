@@ -12,7 +12,11 @@ body {
   outline: 0;
   border-width: 0 0 0px;
   border-color: light;
-  color: grey;
+  color: #494949;
+}
+
+.input-title::placeholder {
+  color: lightgrey;
 }
 
 .input-title:focus {
@@ -20,7 +24,6 @@ body {
   outline: 0;
   border-width: 0 0 2px;
   border-color: lightgrey;
-  color: grey;
 }
 
 .material-icons {
