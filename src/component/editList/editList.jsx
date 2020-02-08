@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import ListsService from "../../service/listsService";
-import ListItemComponent from "../listItemComponent";
 import { toast } from "react-toastify";
 import Title from "./title";
 import AddListItem from "./addListItem";
+import ListItems from "./listItems";
 
 class EditList extends Component {
   state = { list: { title: "", items: [] } };
@@ -68,21 +68,10 @@ class EditList extends Component {
       <React.Fragment>
         <Title onChange={this.handleTitleChange} title={title} />
         <AddListItem onAddItem={this.handleAddItem} />
-        <div className="row">
-          <div className="col-md-12 col-md-6">
-            <ul className="list-group">
-              {items.map((item, pos) => {
-                return (
-                  <ListItemComponent
-                    key={item.text}
-                    item={item}
-                    onClick={this.handleToggleItemIsComplete}
-                  />
-                );
-              })}
-            </ul>
-          </div>
-        </div>
+        <ListItems
+          items={items}
+          onToggleItemIsComplete={this.handleToggleItemIsComplete}
+        />
         <div className="row">
           <div className="col-md-12">
             <button
