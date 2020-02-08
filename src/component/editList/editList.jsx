@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import Title from "./title";
 import AddListItem from "./addListItem";
 import ListItems from "./listItems";
+import Save from "./save";
 
 class EditList extends Component {
   state = { list: { title: "", items: [] } };
@@ -62,8 +63,6 @@ class EditList extends Component {
   render() {
     const { title, items } = this.state.list;
 
-    // var itemsaf = items.map(x => x.title);
-
     return (
       <React.Fragment>
         <Title onChange={this.handleTitleChange} title={title} />
@@ -72,16 +71,7 @@ class EditList extends Component {
           items={items}
           onToggleItemIsComplete={this.handleToggleItemIsComplete}
         />
-        <div className="row">
-          <div className="col-md-12">
-            <button
-              onClick={this.handleSave}
-              className="btn btn-dark mt-3 col-md-12"
-            >
-              Save
-            </button>
-          </div>
-        </div>
+        <Save onSave={this.handleSave} />
       </React.Fragment>
     );
   }
