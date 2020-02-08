@@ -15,6 +15,7 @@ function App() {
       <ToastContainer></ToastContainer>
       <Switch>
         <Route path="/about" component={About} />
+        <Route path="/lists/new" component={EditList} />
         <Route path="/lists/:id" component={EditList} />
         <Route path="/lists" component={Lists} />
         <Redirect to="/lists" />
