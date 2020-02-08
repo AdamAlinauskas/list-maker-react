@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import ListsService from "../service/listsService";
-import ListItemComponent from "./listItemComponent";
+import ListsService from "../../service/listsService";
+import ListItemComponent from "../listItemComponent";
+import { toast } from "react-toastify";
+import Title from "./title";
 
 class EditList extends Component {
   state = { list: { title: "", items: [], newItem: "" } };
@@ -40,6 +42,7 @@ class EditList extends Component {
     this.listService.save({ ...this.state.list });
 
     history.replace("/");
+    toast.success("Saved :)");
   };
 
   handleToggleItemIsComplete = itemToUpdate => {
@@ -62,19 +65,7 @@ class EditList extends Component {
 
     return (
       <React.Fragment>
-        <div className="row mb-3">
-          <div className="col" style={{ textAlign: "center" }}>
-            <input
-              style={{ textAlign: "center" }}
-              placeholder="Title"
-              type="text"
-              className="input-field input-title"
-              value={title}
-              onChange={this.handleTitleChange}
-            />
-          </div>
-        </div>
-
+        <Title onChange={this.handleTitleChange} title={title} />
         <div className="row">
           <div className="col">
             <form onSubmit={this.handleAddItem}>
