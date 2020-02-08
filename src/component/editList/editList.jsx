@@ -3,9 +3,10 @@ import ListsService from "../../service/listsService";
 import ListItemComponent from "../listItemComponent";
 import { toast } from "react-toastify";
 import Title from "./title";
+import AddListItem from "./addListItem";
 
 class EditList extends Component {
-  state = { list: { title: "", items: [], newItem: "" } };
+  state = { list: { title: "", items: [] } };
   listService = null;
   constructor() {
     super();
@@ -25,13 +26,13 @@ class EditList extends Component {
     this.setState({ list });
   };
 
-  handleAddItem = e => {
-    e.preventDefault();
+  handleAddItem = text => {
+    // e.preventDefault();
 
     const list = { ...this.state.list };
 
-    var items = [{ text: this.state.newItem }, ...this.state.list.items];
-    console.log(this.state.newItem);
+    var items = [{ text: text }, ...this.state.list.items];
+    console.log(text);
     list.items = items;
     this.setState({ list, newItem: "" });
   };
@@ -66,35 +67,7 @@ class EditList extends Component {
     return (
       <React.Fragment>
         <Title onChange={this.handleTitleChange} title={title} />
-        <div className="row">
-          <div className="col">
-            <form onSubmit={this.handleAddItem}>
-              <div className="input-group mb-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="New Item"
-                  aria-label="Recipient's username"
-                  aria-describedby="button-addon2"
-                  autoFocus
-                  value={this.state.newItem}
-                  onChange={({ target }) =>
-                    this.setState({ newItem: target.value })
-                  }
-                />
-                <div className="input-group-append">
-                  <button
-                    type="submit"
-                    className="btn btn-outline-secondary"
-                    id="button-addon2"
-                  >
-                    Add
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
+        <AddListItem onAddItem={this.handleAddItem} />
         <div className="row">
           <div className="col-md-12 col-md-6">
             <ul className="list-group">
