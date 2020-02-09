@@ -26,7 +26,7 @@ class EditList extends Component {
   }
 
   handleTitleChange = event => {
-    const list = this.state.list;
+    const list = { ...this.state.list };
     list.title = event.target.value;
     this.setState({ list });
   };
