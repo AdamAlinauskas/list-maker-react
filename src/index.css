@@ -42,3 +42,7 @@ code {
 .footer {
   color: lightgrey;
 }
+
+.todo-list-item {
+  cursor: pointer;
+}
