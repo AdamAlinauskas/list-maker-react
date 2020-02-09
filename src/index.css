@@ -20,10 +20,14 @@ body {
 }
 
 .input-title:focus {
-  font-size: 3em;
   outline: 0;
   border-width: 0 0 2px;
   border-color: lightgrey;
+}
+
+.input-description {
+  width: 100%;
+  font-size: 1em;
 }
 
 .material-icons {
