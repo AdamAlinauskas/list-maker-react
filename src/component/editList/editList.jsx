@@ -4,10 +4,11 @@ import { toast } from "react-toastify";
 import Title from "./title";
 import AddListItem from "./addListItem";
 import ListItems from "./listItems";
+import Description from "./description";
 import Save from "./save";
 
 class EditList extends Component {
-  state = { list: { title: "", items: [] } };
+  state = { list: { title: "", description: "", items: [] } };
   listService = null;
 
   constructor() {
@@ -19,7 +20,6 @@ class EditList extends Component {
     const id = this.props.match.params.id;
 
     if (id !== "new") {
-      console.log("load");
       const list = { ...this.listService.getList(id) };
       this.setState({ list });
     }
@@ -32,12 +32,8 @@ class EditList extends Component {
   };
 
   handleAddItem = text => {
-    // e.preventDefault();
-
     const list = { ...this.state.list };
-
     var items = [{ text: text }, ...this.state.list.items];
-    console.log(text);
     list.items = items;
     this.setState({ list, newItem: "" });
   };
