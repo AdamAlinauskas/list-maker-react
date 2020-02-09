@@ -64,11 +64,22 @@ class EditList extends Component {
     this.setState({ list });
   };
 
+  handleDescriptionChange = description => {
+    const list = { ...this.state.list };
+    list.description = description;
+    this.setState({ list: list });
+  };
+
   render() {
-    const { title, items } = this.state.list;
+    const { title, description, items } = this.state.list;
     return (
       <React.Fragment>
         <Title onChange={this.handleTitleChange} title={title} />
+        <Description
+          description={description}
+          onDescriptionChange={this.handleDescriptionChange}
+        />
+
         <AddListItem onAddItem={this.handleAddItem} />
         <ListItems
           items={items}
