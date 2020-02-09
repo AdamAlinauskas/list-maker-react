@@ -20,7 +20,9 @@ function App() {
         <Redirect to="/lists" />
       </Switch>
 
-      <div>Foot here</div>
+      <footer className="border-top">
+        <div className="row justify-content-md-center footer">Foot here</div>
+      </footer>
     </main>
   );
 }
